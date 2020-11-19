@@ -2,7 +2,6 @@ import { NgModule} from '@angular/core';
 import {
   MatButtonModule,
   MatButtonToggleModule,
-  MatIconModule,
   MatProgressSpinnerModule,
   MatToolbarModule,
   MatSidenavModule,
@@ -12,17 +11,16 @@ import {
   MatInputModule,
   MatSelectModule,
   MatTableModule,
-  MatAutocompleteModule,
-  MatChipsModule,
   MatBadgeModule
   
 } from '@angular/material';
 
-
+import { MatIconModule } from '@angular/material/icon'
+import { MatChipsModule } from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 const Material = [
   MatButtonModule,
   MatButtonToggleModule,
-  MatIconModule,
   MatBadgeModule,
   MatProgressSpinnerModule,
   MatToolbarModule,
@@ -34,7 +32,8 @@ const Material = [
   MatSelectModule,
   MatTableModule,
   MatChipsModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatIconModule
 ];
 @NgModule({
   imports: [

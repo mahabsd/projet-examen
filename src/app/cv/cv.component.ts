@@ -6,22 +6,22 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { map, startWith } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
-@Component({
-  selector: '[app-hero-detail]',
-  templateUrl: './hero-detail.component.html',
-  styleUrls: ['./hero-detail.component.css']
-})
-export class HeroDetailComponent implements OnInit {
 
-  constructor() {
+@Component({
+  selector: 'app-cv',
+  templateUrl: './cv.component.html',
+  styleUrls: ['./cv.component.css']
+})
+export class CvComponent implements OnInit {
+
+  constructor() { 
     this.filteredSkills = this.skillCtrl.valueChanges.pipe(
       startWith(null),
       map((skill: string | null) => skill ? this._filter(skill) : this.allskills.slice()));
-   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
+  ngOnInit(): void {
+  }
 
   registrationForm = new FormGroup({
     userName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -77,7 +77,6 @@ export class HeroDetailComponent implements OnInit {
 
     return this.allskills.filter(skill => skill.toLowerCase().indexOf(filterValue) === 0);
   }
-
 
 
 }

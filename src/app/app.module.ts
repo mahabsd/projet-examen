@@ -5,13 +5,13 @@ import { AppComponent } from './app.component';
 import bootstrap from "bootstrap";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
+import { CvComponent } from './cv/cv.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeroDetailComponent
+    CvComponent
   ],
   imports: [
     BrowserAnimationsModule,
