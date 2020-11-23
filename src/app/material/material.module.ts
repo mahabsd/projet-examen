@@ -14,7 +14,7 @@ import {
   MatBadgeModule
   
 } from '@angular/material';
-
+import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 import { MatIconModule } from '@angular/material/icon'
 import { MatChipsModule } from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
