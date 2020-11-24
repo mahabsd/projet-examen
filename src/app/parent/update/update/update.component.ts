@@ -42,17 +42,7 @@ export class UpdateComponent implements OnInit {
   }
 
 
-  // loadApiData() {
-  //   // this.user = this.users[this.id]
-  //   console.log(this.id);
-  //   console.log(this.user);
-  //   this.user.patchValue({
-  //     userName: this.users[this.id].userName,
-  //     email: this.users[this.id].email,
-  //     password: this.users[this.id].password,
-  //     confirmPassword: this.users[this.id].confirmPassword,
-  //   })
-  // }
+ 
 
   update(user) {
     var i = this.id

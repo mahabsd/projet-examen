@@ -6,32 +6,37 @@ import { Subject } from 'rxjs/internal/Subject';
   providedIn: 'root'
 })
 export class FormService {
-  users = [];
+  //users = [];
   constructor() { 
   }
 
   addUsers(user) {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    this.users.push(user)
+    users.push(user)
     localStorage.setItem('users',JSON.stringify(users));
+   // this.users = users
 
   }
   getUsers() {
 
-    return this.users
+    return JSON.parse(localStorage.getItem("users")) || [];
   }
   deleteUser(i){
     console.log(i);
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    this.users.splice(i,1);
-    localStorage.setItem('users',JSON.stringify(this.users));
+    users.splice(i, 1);
+  //  this.users = users
+    localStorage.setItem('users',JSON.stringify(users));
+  // console.log(this.users);
+  window.location.reload();
 
   };
   updateUser(i, user) {
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    this.users.splice(i, 1, user.value);
-    localStorage.setItem('users',JSON.stringify(this.users));
+    users.splice(i, 1, user.value);
+    localStorage.setItem('users',JSON.stringify(users));
+  //  this.users = users
 
   }
 

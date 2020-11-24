@@ -13,6 +13,7 @@ export class Child2Component implements OnInit {
 }
   users =[]
   ngOnInit(): void {
+    
     this.users = this.myService.getUsers()
     console.log(this.users);
     

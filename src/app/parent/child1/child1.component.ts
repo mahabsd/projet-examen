@@ -7,37 +7,53 @@ import { map, startWith } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { passwordValidator } from './shared/password.validator';
 import { FormService } from 'src/app/service/form.service';
+import { GuardserviceService } from 'src/app/service/guardservice.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-child1',
   templateUrl: './child1.component.html',
   styleUrls: ['./child1.component.css']
 })
 export class Child1Component implements OnInit {
-  constructor(private formService: FormService) { 
+  constructor(private formService: FormService, private AuthServices: GuardserviceService, private route: Router) { 
     this.filteredSkills = this.skillCtrl.valueChanges.pipe(
       startWith(null),
       map((skill: string | null) => skill ? this._filter(skill) : this.allskills.slice()));
   }
   public form = [];
+  submited: boolean = false;
 
   ngOnInit(): void {
   }
 
   registrationForm = new FormGroup({
-    userName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    userName: new FormControl('', ),
     email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
+    password: new FormControl('',  [Validators.required]),
+    confirmPassword: new FormControl('',  [Validators.required]),
    // skills: new FormArray([]),
     // ProfessionalExperience: new FormArray([]),
   }, {validators: passwordValidator})
- 
+
 
   onSubmit() {
-    this.formService.addUsers(this.registrationForm.value);
-        localStorage.setItem('users',JSON.stringify(this.registrationForm.value));
 
- }
+      this.submited = true;
+    if (this.registrationForm.invalid) {
+      console.log("regist failed");
+      
+      return ;
+    }
+    if (this.AuthServices.login(this.registrationForm.value)) {
+    //  this.formService.addUsers(this.registrationForm.value);
+      localStorage.setItem('loggeduser',JSON.stringify(this.registrationForm.value));
+      this.route.navigateByUrl("/child2");
+
+    } else { console.log("mdp incorrect"); }
+
+  }
+ 
 
 
   visible = true;

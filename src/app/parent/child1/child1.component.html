@@ -6,11 +6,11 @@
             <!-- <div>
                 {{registrationForm.value | json}}
               </div> -->
-          <mat-form-field floatLabel="auto">
+          <!-- <mat-form-field floatLabel="auto">
             <mat-label>nom</mat-label>
             <input matInput required name="userName" formControlName="userName" [class.is-invalid]="registrationForm.get('userName').invalid && registrationForm.get('userName').touched ">
             <mat-error [class.d-none]="registrationForm.get('userName').valid || registrationForm.get('userName').untouched"  >This field is required</mat-error>
-          </mat-form-field>
+          </mat-form-field> -->
           <mat-form-field floatLabel="auto">
             <mat-label>email</mat-label>
             <input matInput required formControlName="email" [class.is-invalid]="registrationForm.get('email').invalid && registrationForm.get('email').touched "  > 
