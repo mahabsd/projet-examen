@@ -28,13 +28,15 @@ export class Child1Component implements OnInit {
     email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     password: new FormControl(''),
     confirmPassword: new FormControl(''),
-    skills: new FormArray([]),
+   // skills: new FormArray([]),
     // ProfessionalExperience: new FormArray([]),
   }, {validators: passwordValidator})
  
 
   onSubmit() {
     this.formService.addUsers(this.registrationForm.value);
+        localStorage.setItem('users',JSON.stringify(this.registrationForm.value));
+
  }
 
 

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
       <div class="col-4"></div>
-      <div class="col-3">
+      <div class="col-2">
         <form [formGroup]=registrationForm>
             <!-- <div>
                 {{registrationForm.value | json}}
@@ -36,7 +36,7 @@
        
 
 
-          <h3>Skills</h3>
+          <!-- <h3>Skills</h3>
           <div formArrayName="skills">
            <mat-form-field class="example-chip-list">
              <mat-chip-list #chipList aria-label="skill selection">
@@ -57,7 +57,7 @@
                </mat-option>
              </mat-autocomplete>
            </mat-form-field>
-          </div>
+          </div> -->
             <!-- <h3>Professional Experience</h3>
             <div [formGroup]=registrationForm>
               <button mat-mini-fab color="accent" (click)="addProfessionalExperience()"
@@ -72,7 +72,6 @@
             </div>-->
 
                <button mat-raised-button color="accent" type="submit" (click) = "onSubmit()" > submit form</button> 
-          <!-- <button mat-raised-button (click)="loadApiData()" type="button">load data</button> -->
         </form>
       </div>
     </div>
