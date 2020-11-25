@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GuardserviceService } from 'src/app/service/guardservice.service';
 import { Router } from '@angular/router';
+import { passwordValidator } from '../child1/shared/password.validator';
 
 @Component({
   selector: 'app-signin',
@@ -20,7 +21,8 @@ export class SigninComponent implements OnInit {
       email: new FormControl('', [Validators.required,Validators.email]),
       password: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required])
-    },
+     },
+       { validators: passwordValidator }
     );
    
   }

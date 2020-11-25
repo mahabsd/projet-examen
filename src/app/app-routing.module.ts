@@ -4,7 +4,8 @@ import { Child1Component } from './parent/child1/child1.component';
 import { Child2Component } from './parent/child2/child2.component';
 import { UpdateComponent } from './parent/update/update/update.component';
 import { SigninComponent } from './parent/signin/signin.component';
-import { AuthGuardGuard } from './auth-guard.guard'
+import { AuthGuardGuard } from './auth-guard.guard';
+import {WeatherComponent} from './parent/weather/weather.component'
 const routes: Routes = [
   {
     path: 'Signup',
@@ -32,10 +33,16 @@ const routes: Routes = [
   {
     path: 'child1', redirectTo: 'child1'
   },
+  {
+    path: 'weather',
+    component: WeatherComponent,
+    canActivate: [AuthGuardGuard]
+
+  },
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [Child1Component, Child2Component, UpdateComponent]
+export const routingComponents = [Child1Component, Child2Component, UpdateComponent, SigninComponent, WeatherComponent ]

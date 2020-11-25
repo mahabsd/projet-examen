@@ -10,8 +10,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { ParentComponent } from './parent/parent.component';
 import { NavBarComponent } from './parent/nav-bar/nav-bar/nav-bar.component';
 import { SigninComponent } from './parent/signin/signin.component';
-import { WeatherComponent } from './parent/weather/weather.component';
-
+import {HttpClientModule} from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +18,6 @@ import { WeatherComponent } from './parent/weather/weather.component';
     NavBarComponent,
     routingComponents,
     SigninComponent,
-    WeatherComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -27,7 +25,8 @@ import { WeatherComponent } from './parent/weather/weather.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
     
   ],
   providers: [ ],

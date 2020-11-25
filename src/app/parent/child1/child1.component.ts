@@ -31,10 +31,10 @@ export class Child1Component implements OnInit {
     userName: new FormControl('', ),
     email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     password: new FormControl('',  [Validators.required]),
-    confirmPassword: new FormControl('',  [Validators.required]),
+    confirmPassword: new FormControl('',),
    // skills: new FormArray([]),
     // ProfessionalExperience: new FormArray([]),
-  }, {validators: passwordValidator})
+  })
 
 
   onSubmit() {
