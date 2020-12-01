@@ -3,53 +3,60 @@ import { FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { map, startWith } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormService } from 'src/app/service/form.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, startWith } from 'rxjs/operators';
+
 
 @Component({
-  selector: 'app-child1',
-  templateUrl: './child1.component.html',
-  styleUrls: ['./child1.component.css']
+  selector: 'app-update-post',
+  templateUrl: './update-post.component.html',
+  styleUrls: ['./update-post.component.css']
 })
-export class Child1Component implements OnInit {
-  constructor(private postService: FormService, private route: Router) {
+export class UpdateComponent implements OnInit {
+  posts: any;
+
+  constructor(private postService: FormService, private router: ActivatedRoute, private route: Router) {
     this.filteredCategories = this.categorieCtrl.valueChanges.pipe(
       startWith(null),
       map((categorie: string | null) => categorie ? this._filter(categorie) : this.allcategories.slice()));
-  }
-  public form = [];
-  submited: boolean = false;
-public post
+   }
+  
+  id = this.router.snapshot.paramMap.get('index');
+  post = new FormGroup({
+    titre: new FormControl('',[Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    date: new FormControl('', ),
+    categorie: new FormArray([],  [Validators.required]),
+  })
   ngOnInit(): void {
-    this.post = new FormGroup({
-      titre: new FormControl('',[Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      date: new FormControl(''),
-      categorie: new FormArray([],  [Validators.required]),
-    })
+    // this.user = this.myService.getUsers()
+    console.log(this.post);
 
-  } 
 
-  onSubmit() {
-    console.log(this.post.date);
+    this.posts = this.postService.getPosts()
     
-    if (this.post.invalid) {
-      console.log("post failed");
-      
-      return ;
-    }
+  
+    // this.user = this.posts[this.id]
+    console.log(this.id);
+    console.log(this.post);
     this.post.patchValue({
-      date: new Date()
-
+      titre: this.posts[this.id].titre,
+      description: this.posts[this.id].description,
+      date: new Date(),
+      categorie: this.posts[this.id].categorie,
     })
-    this.postService.addPosts(this.post.value);
-  //  localStorage.setItem('loggeduser', JSON.stringify(this.post.value));
-    this.route.navigateByUrl("/child2");
-
+  
   }
 
+ 
+
+  update(post) {
+    var i = this.id
+    this.postService.updatePost(i, post)
+    this.route.navigateByUrl("/list-post");
+  }
 
 
   visible = true;
@@ -97,4 +104,5 @@ public post
 
     return this.allcategories.filter(categorie => categorie.toLowerCase().indexOf(filterValue) === 0);
   }
+
 }

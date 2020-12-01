@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Child1Component } from './parent/child1/child1.component';
-import { Child2Component } from './parent/child2/child2.component';
-import { UpdateComponent } from './parent/update/update/update.component';
+import { Child1Component } from './parent/add-post/add-post.component';
+import { Child2Component } from './parent/list-post/list-post.component';
+import { UpdateComponent } from './parent/update/update/update-post.component';
 
 const routes: Routes = [
 
   {
-    path: 'child1',
+    path: 'add-post',
     component: Child1Component,
 
   },
   {
-    path: 'child2',
+    path: 'list-post',
     component: Child2Component,
   },
   {
-    path: 'child2/update/:index',
+    path: 'list-post/update/:index',
     component: UpdateComponent,
   },
 ]

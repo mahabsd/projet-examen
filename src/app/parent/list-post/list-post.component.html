@@ -25,7 +25,7 @@
       <td>{{post.description}}</td>
       <td>{{post.date}}</td>
       <td>{{post.categorie}}</td>
-      <button mat-raised-button color= "primary" [routerLink]="['/child2/update', i]"> update</button>
+      <button mat-raised-button color= "primary" [routerLink]="['/list-post/update', i]"> update</button>
       <button mat-raised-button color = "warn" (click) = "delete(i)"> delete</button>
     </tr>
   </tbody>
