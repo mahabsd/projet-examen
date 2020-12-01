@@ -1,10 +1,10 @@
 <!-- <div>
   <ul>
 
-    <li *ngFor="let user of users ; let i as index ">{{user.userName}}</li>
-    <li *ngFor="let user of users">{{user.email}}</li>
-    <li *ngFor="let user of users">{{user.password}}</li>
-    <li *ngFor="let user of users">{{user.skills}}</li>
+    <li *ngFor="let post of posts ; let i as index ">{{post.postName}}</li>
+    <li *ngFor="let post of posts">{{post.email}}</li>
+    <li *ngFor="let post of posts">{{post.password}}</li>
+    <li *ngFor="let post of posts">{{post.skills}}</li>
   </ul>
 </div> -->
 
@@ -12,19 +12,19 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">userName</th>
-      <th scope="col">email</th>
-      <th scope="col">password</th>
-      <th scope="col">skills</th>
+      <th scope="col">titre</th>
+      <th scope="col">description</th>
+      <th scope="col">date</th>
+      <th scope="col">categorie</th>
     </tr>
   </thead>
   <tbody>
-    <tr  *ngFor="let user of users ; let i = index ">
+    <tr  *ngFor="let post of posts ; let i = index ">
       <th scope="row">{{i}}</th>
-      <td>{{user.userName}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.password}}</td>
-      <td>{{user.skills}}</td>
+      <td>{{post.titre}}</td>
+      <td>{{post.description}}</td>
+      <td>{{post.date}}</td>
+      <td>{{post.categorie}}</td>
       <button mat-raised-button color= "primary" [routerLink]="['/child2/update', i]"> update</button>
       <button mat-raised-button color = "warn" (click) = "delete(i)"> delete</button>
     </tr>

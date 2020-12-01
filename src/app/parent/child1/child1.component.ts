@@ -1,13 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild  } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { map, startWith } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { passwordValidator } from './shared/password.validator';
 import { FormService } from 'src/app/service/form.service';
-import { GuardserviceService } from 'src/app/service/guardservice.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,56 +14,54 @@ import { Router } from '@angular/router';
   styleUrls: ['./child1.component.css']
 })
 export class Child1Component implements OnInit {
-  constructor(private formService: FormService, private AuthServices: GuardserviceService, private route: Router) { 
-    this.filteredSkills = this.skillCtrl.valueChanges.pipe(
+  constructor(private postService: FormService, private route: Router) {
+    this.filteredCategories = this.categorieCtrl.valueChanges.pipe(
       startWith(null),
-      map((skill: string | null) => skill ? this._filter(skill) : this.allskills.slice()));
+      map((categorie: string | null) => categorie ? this._filter(categorie) : this.allcategories.slice()));
   }
   public form = [];
   submited: boolean = false;
-
+public post
   ngOnInit(): void {
-  }
+    this.post = new FormGroup({
+      titre: new FormControl('',[Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      date: new FormControl(''),
+      categorie: new FormArray([],  [Validators.required]),
+    })
 
-  registrationForm = new FormGroup({
-    userName: new FormControl('', ),
-    email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-    password: new FormControl('',  [Validators.required]),
-    confirmPassword: new FormControl('',),
-   // skills: new FormArray([]),
-    // ProfessionalExperience: new FormArray([]),
-  })
-
+  } 
 
   onSubmit() {
-
-      this.submited = true;
-    if (this.registrationForm.invalid) {
-      console.log("regist failed");
+    console.log(this.post.date);
+    
+    if (this.post.invalid) {
+      console.log("post failed");
       
       return ;
     }
-    if (this.AuthServices.login(this.registrationForm.value)) {
-    //  this.formService.addUsers(this.registrationForm.value);
-      localStorage.setItem('loggeduser',JSON.stringify(this.registrationForm.value));
-      this.route.navigateByUrl("/child2");
+    this.post.patchValue({
+      date: new Date()
 
-    } else { console.log("mdp incorrect"); }
+    })
+    this.postService.addPosts(this.post.value);
+  //  localStorage.setItem('loggeduser', JSON.stringify(this.post.value));
+    this.route.navigateByUrl("/child2");
 
   }
- 
+
 
 
   visible = true;
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  skillCtrl = new FormControl();
-  filteredSkills: Observable<string[]>;
-  skills: string[] = ['HTML'];
-  allskills: string[] = ['CSS', 'nodejs', 'angular'];
+  categorieCtrl = new FormControl();
+  filteredCategories: Observable<string[]>;
+  categories: string[] = ['Sports'];
+  allcategories: string[] = ['culture', 'music', 'economy'];
 
-  @ViewChild('skillInput') skillInput: ElementRef<HTMLInputElement>;
+  @ViewChild('categorieInput') categorieInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
 
@@ -73,9 +69,9 @@ export class Child1Component implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    // Add our skill
+    // Add our categorie
     if ((value || '').trim()) {
-    (this.registrationForm.get('skills') as FormArray ).push(new FormControl( value ,[Validators.required] ));
+      (this.post.get('categorie') as FormArray).push(new FormControl(value, [Validators.required]));
     }
 
     // Reset the input value
@@ -83,27 +79,22 @@ export class Child1Component implements OnInit {
       input.value = '';
     }
 
-    this.skillCtrl.setValue(null);
+    this.categorieCtrl.setValue(null);
   }
 
   remove(index): void {
-    (this.registrationForm.get('skills') as FormArray).removeAt(index);
+    (this.post.get('categorie') as FormArray).removeAt(index);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    (this.registrationForm.get('skills') as FormArray).push(new FormControl(event.option.viewValue));
-    this.skillInput.nativeElement.value = '';
-    this.skillCtrl.setValue(null);
+    (this.post.get('categorie') as FormArray).push(new FormControl(event.option.viewValue));
+    this.categorieInput.nativeElement.value = '';
+    this.categorieCtrl.setValue(null);
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.allskills.filter(skill => skill.toLowerCase().indexOf(filterValue) === 0);
+    return this.allcategories.filter(categorie => categorie.toLowerCase().indexOf(filterValue) === 0);
   }
-  // addProfessionalExperience() {
-  //   (this.registrationForm.get('ProfessionalExperience') as FormArray).push(new FormControl('', Validators.required));
-  // }
-  
-
 }

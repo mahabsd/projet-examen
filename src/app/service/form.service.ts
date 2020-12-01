@@ -6,37 +6,37 @@ import { Subject } from 'rxjs/internal/Subject';
   providedIn: 'root'
 })
 export class FormService {
-  //users = [];
+  //posts = [];
   constructor() { 
   }
 
-  addUsers(user) {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    users.push(user)
-    localStorage.setItem('users',JSON.stringify(users));
-   // this.users = users
+  addPosts(post) {
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
+    posts.push(post)
+    localStorage.setItem('posts',JSON.stringify(posts));
+   // this.posts = posts
 
   }
-  getUsers() {
+  getPosts() {
 
-    return JSON.parse(localStorage.getItem("users")) || [];
+    return JSON.parse(localStorage.getItem("posts")) || [];
   }
-  deleteUser(i){
+  deletePost(i){
     console.log(i);
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    users.splice(i, 1);
-  //  this.users = users
-    localStorage.setItem('users',JSON.stringify(users));
-  // console.log(this.users);
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
+    posts.splice(i, 1);
+  //  this.posts = posts
+    localStorage.setItem('posts',JSON.stringify(posts));
+  // console.log(this.posts);
   window.location.reload();
 
   };
-  updateUser(i, user) {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+  updatePost(i, post) {
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
 
-    users.splice(i, 1, user.value);
-    localStorage.setItem('users',JSON.stringify(users));
-  //  this.users = users
+    posts.splice(i, 1, post.value);
+    localStorage.setItem('posts',JSON.stringify(posts));
+  //  this.posts = posts
 
   }
 

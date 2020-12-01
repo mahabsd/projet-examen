@@ -11,14 +11,14 @@ export class Child2Component implements OnInit {
   public constructor(private myService: FormService) {
 
 }
-  users =[]
+  posts =[]
   ngOnInit(): void {
     
-    this.users = this.myService.getUsers()
-    console.log(this.users);
+    this.posts = this.myService.getPosts()
+    console.log(this.posts);
     
   }
   delete(i){
-    this.myService.deleteUser(i) 
+    this.myService.deletePost(i) 
     }
 }

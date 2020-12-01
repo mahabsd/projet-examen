@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ParentComponent } from './parent/parent.component';
 import { NavBarComponent } from './parent/nav-bar/nav-bar/nav-bar.component';
-import { SigninComponent } from './parent/signin/signin.component';
 import {HttpClientModule} from '@angular/common/http'
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import {HttpClientModule} from '@angular/common/http'
     ParentComponent,
     NavBarComponent,
     routingComponents,
-    SigninComponent,
   ],
   imports: [
     BrowserAnimationsModule,

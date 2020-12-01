@@ -2,75 +2,46 @@
     <div class="row">
       <div class="col-4"></div>
       <div class="col-2">
-        <form [formGroup]=registrationForm>
+        <form [formGroup]=post>
             <!-- <div>
-                {{registrationForm.value | json}}
+                {{post.value | json}}
               </div> -->
-          <!-- <mat-form-field floatLabel="auto">
-            <mat-label>nom</mat-label>
-            <input matInput required name="userName" formControlName="userName" [class.is-invalid]="registrationForm.get('userName').invalid && registrationForm.get('userName').touched ">
-            <mat-error [class.d-none]="registrationForm.get('userName').valid || registrationForm.get('userName').untouched"  >This field is required</mat-error>
-          </mat-form-field> -->
+         <mat-form-field floatLabel="auto">
+            <mat-label>titre</mat-label>
+            <input matInput required name="titre" formControlName="titre" [class.is-invalid]="post.get('titre').invalid && post.get('titre').touched ">
+            <mat-error [class.d-none]="post.get('titre').valid || post.get('titre').untouched"  >This field is required</mat-error>
+          </mat-form-field> 
           <mat-form-field floatLabel="auto">
-            <mat-label>email</mat-label>
-            <input matInput required formControlName="email" [class.is-invalid]="registrationForm.get('email').invalid && registrationForm.get('email').touched "  > 
-           <mat-error [class.d-none]="registrationForm.get('email').valid || registrationForm.get('email').untouched" >This field is required</mat-error>
-                 <!--  <mat-error *ngIf="registrationForm.get('email').errors?.pattern"> Please provide a valid email address</mat-error> -->
+            <mat-label>description</mat-label>
+            <input matInput required formControlName="description" [class.is-invalid]="post.get('description').invalid && post.get('description').touched "  > 
+           <mat-error [class.d-none]="post.get('description').valid || post.get('description').untouched" >This field is required</mat-error>
+                 <!--  <mat-error *ngIf="post.get('description').errors?.pattern"> Please provide a valid description address</mat-error> -->
           </mat-form-field>
-          <mat-form-field floatLabel="auto">
-            <mat-label>mot de passe</mat-label>
-            <input matInput required formControlName="password"   [class.is-invalid]="registrationForm.get('password').invalid && registrationForm.get('password').touched ">
-            <mat-error  [class.d-none]="registrationForm.get('password').valid || registrationForm.get('password').untouched" >This field is required</mat-error>
-            <!-- <mat-error *ngIf="password.errors?.pattern"> il doit contenir au moins un caract�re minuscule et
-                    un majuscule, un entier et un caract�re sp�cial</mat-error> -->
-            <mat-hint> min 5 characters</mat-hint>
-          </mat-form-field>
-      
-          <!-- <mat-form-field floatLabel="auto">
-            <mat-label>confirmez mot de passe</mat-label>
-            <input matInput required formControlName="confirmPassword" [class.is-invalid]="registrationForm.errors?.misMatch">
-            <mat-error [class.d-none]="registrationForm.get('confirmPassword').valid || registrationForm.get('confirmPassword').untouched">This field is required</mat-error>
-          </mat-form-field>
-          <small  *ngIf='registrationForm.errors?.misMatch 'class="text-danger" > password mismatch</small>
-       
- -->
 
-          <!-- <h3>Skills</h3>
-          <div formArrayName="skills">
+           <h3>Cathegory</h3>
+          <div formArrayName="categorie">
            <mat-form-field class="example-chip-list">
-             <mat-chip-list #chipList aria-label="skill selection">
-               <mat-chip *ngFor="let skill of registrationForm.get('skills').value; let i = index"
+             <mat-chip-list #chipList aria-label="categorie selection">
+               <mat-chip *ngFor="let cat of post.get('categorie').value; let i = index"
                 [selectable]="selectable"
                  [removable]="removable"
                  (removed)="remove(i)">
-                 {{skill}}
+                 {{cat}}
                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                </mat-chip>
-               <input placeholder="New skill..." #skillInput [formControl]="skillCtrl" [matAutocomplete]="auto"
+               <input placeholder="New cathegory..." #categorieInput [formControl]="categorieCtrl" [matAutocomplete]="auto"
                  [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                  (matChipInputTokenEnd)="add($event)">
              </mat-chip-list>
              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-               <mat-option *ngFor="let skill of filteredSkills | async" [value]="skill">
-                 {{skill}}
+               <mat-option *ngFor="let cat of filteredCategories | async" [value]="cat">
+                 {{cat}}
                </mat-option>
              </mat-autocomplete>
            </mat-form-field>
-          </div> -->
-            <!-- <h3>Professional Experience</h3>
-            <div [formGroup]=registrationForm>
-              <button mat-mini-fab color="accent" (click)="addProfessionalExperience()"
-                aria-label="Example icon button with a plus one icon">
-                <mat-icon>control_point</mat-icon>
-              </button>
-              <mat-form-field formArrayName="ProfessionalExperience" *ngFor="let exp of registrationForm.get('ProfessionalExperience').value; let i = index">
-                <mat-label>additional Professional Experience</mat-label> 
-    
-                <input matInput [formControlName]="index ">
-              </mat-form-field>
-            </div>-->
+          </div> 
 
-               <button mat-raised-button color="accent" type="submit" (click) = "onSubmit()" > submit form</button> 
+               <button mat-raised-button color="accent" type="submit" (click) = "onSubmit()" > submit post</button> 
         </form>
       </div>
     </div>
